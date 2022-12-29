@@ -1,0 +1,185 @@
+<!--Modal-->
+
+<hr />
+<button
+  style="margin: 50px; padding: 10px"
+  type="button"
+  class="btn btn-primary"
+  (click)="openPopup()">Adicionar Producto
+</button>
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <div class="form-group">
+                  <h1>Datos Producto</h1>
+                  <input
+                    type="text"
+                    placeholder="insertar nombre"
+                    class="form-control"
+                    [(ngModel)]="nombre"
+                  />
+                </div>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte precio"
+                    class="form-control"
+                    [(ngModel)]="precio"
+                  />
+                </div>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte stock"
+                    class="form-control"
+                    [(ngModel)]="stock"
+                  />
+                </div>
+                <br/>
+                <div class="form-group">
+                  <label>Categoria:</label>
+                  <br>
+                  <select name="id_categoria" [(ngModel)]="tipoCategoriaR">
+                      <option *ngFor="let c of categoriaLista" [value]="c.idCategoria">{{c.nombre}}</option>
+                  </select>
+                </div>
+                <br>
+                <!--<div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte codigo categoria"
+                    class="form-control"
+                    [(ngModel)]="producto.idCategoria"
+                  />
+                </div>-->
+                <br>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" (click)="crear()">Enviar</button>
+                  <button type="button" class="btn btn-danger" 
+                (click)="closePopup()">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- tabla-->
+
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Fecha Creacion</th>
+      <th scope="col">Id Categoria</th>
+      <th scope="col">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let productos of productosLista">
+      <th>{{productos.id}}</th>
+      <td>{{productos.nombre}}</td>
+      <td>{{productos.precio}}</td>
+      <td>{{productos.stock}}</td>
+      <td>{{productos.fechaCreacion}}</td>
+      <td>{{productos.categoria.idCategoria}}</td>
+      <td><button class="btn btn-primary" (click)="openPopupEditar(productos)">Editar</button>
+        <button class="btn btn-danger" (click)="borrarCliente(productos.id)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Modal Actualizar-->
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{'display':displayStyleActualizar}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card mt-4">
+              <div class="card-body">
+                <div class="form-group">
+                  <h1>Actualizar</h1>
+                  <input
+                    type="text"
+                    placeholder="insertar nombre"
+                    class="form-control"
+                    [(ngModel)]="nombre"
+                  />
+                </div>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte precio"
+                    class="form-control"
+                    [(ngModel)]="precio"
+                  />
+                </div>
+                <br />
+                <div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte stock"
+                    class="form-control"
+                    [(ngModel)]="stock"
+                  />
+                </div>
+                <br/>
+                <div class="form-group">
+                  <label>Categoria:</label>
+                  <br>
+                  <select name="id_categoria" [(ngModel)]="tipoCategoriaR">
+                      <option *ngFor="let c of categoriaLista" [value]="c.idCategoria">{{c.nombre}}</option>
+                  </select>
+                </div>
+                <br>
+                <!--<div class="form-group">
+                  <input
+                    type="number"
+                    placeholder="inserte codigo categoria"
+                    class="form-control"
+                    [(ngModel)]="producto.idCategoria"
+                  />
+                </div>-->
+                <br>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" (click)="Actualizar()">Actualizar</button>
+                  <button type="button" class="btn btn-danger" 
+                (click)="closePopupActualizar()">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

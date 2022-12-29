@@ -1,0 +1,59 @@
+<div id="apartado1">   
+    <div class="input-group mb-3">
+        <input type="number" class="form-control" placeholder="ingrese número de documento del cliente" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="numDocumentoBuscar">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="buscarCliente()" disabled="{{banderaBuscarCliente}}" >Buscar</button>
+      </div>
+</div>
+
+<div id="apartado2">   
+    <p>Cliente: {{nombreC}}</p>
+    <p align="right">Número de factura: {{idFacturaCreada}} </p>
+    <p align="right">Fecha: {{fechaFactura | date :'short'}}</p>
+    <button class="btn btn-primary" (click)="crearFactura()" id ="btnCrearFactura" disabled="{{banderaCrearFactura}}">Crear Factura</button>
+</div>
+
+<div id="apartado3">   
+    <div class="input-group mb-3">
+        <label>Producto:</label>
+        <br>
+        <select name="id_categoria" [(ngModel)]="idProductoSeleccionado">
+            <option *ngFor="let producto of listaProductos" [value]="producto.id">{{producto.nombre}} <p> {{producto.precio | currency}}</p></option>
+        </select>
+      </div>
+      <p>Cantidad: {{cantidad}}<br>
+        <button class="btn btn-primary" (click)="aumentar()">+</button>
+        <button class="btn btn-danger" (click)="disminuir()">-</button>
+        
+    </p>
+    <button class="btn btn-primary" type="button" id="button-addon2" (click)="agregarADetalle()">Agregar Producto</button>
+    <button class="btn btn-success" type="button" id="button-addon2" (click)="terminarCompra()">Terminar Compra</button>
+</div>
+
+<div id="apartado4">   
+    <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio C/U</th>
+            <th>Precio Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lista of listaDetalles">
+            <th>{{lista.producto.nombre}}</th>
+            <th>{{lista.cantidad}}</th>
+            <th>{{lista.producto.precio | currency}}</th>
+            <th>{{lista.precio | currency}}</th>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<div id="apartado5">   
+    <p align="right"><b>SubTotal: {{subTotal | currency}}</b></p>
+    <p align="right"><b>IVA 16%: {{ivaValor | currency}}</b></p>
+    <p align="right"><b>Total: {{total | currency}}</b></p>
+</div>
+
+
