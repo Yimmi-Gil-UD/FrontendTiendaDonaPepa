@@ -144,13 +144,7 @@ export class ProductoComponent implements OnInit {
   
 
   // Paginacion 
-  p: number = 1;
-  total: number = 0;
 
-  pageChangeEvent(event: number){
-    this.p = event;
-    //this.getUsers();
-}
   
 
 }
