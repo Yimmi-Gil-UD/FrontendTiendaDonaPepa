@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteDTO } from 'src/app/models/cliente-dto';
 import { Detalle } from 'src/app/models/detalle';
 import { FacturaDto } from 'src/app/models/factura-dto';
+import { Producto } from 'src/app/models/producto';
 import { DetalleService } from 'src/app/servicios/detalle.service';
 import { FacturaService } from 'src/app/servicios/factura.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -36,9 +37,10 @@ export class FacturaComponent implements OnInit {
   detalle:Detalle;
   facturaDto = new FacturaDto();
   productoDto: ProductoDTO;
+  producto:Producto;
   idFacturaCreada:number;
   fechaFactura:Date;
-  cantidad=0;
+  cantidad=1;
   precioProducto=0;
   precioProductoFinal=0;
 
@@ -89,8 +91,8 @@ export class FacturaComponent implements OnInit {
   }
 
   disminuir(){
-    if(this.cantidad<=0){
-      alert('no se aceptan valores negativos');
+    if(this.cantidad<=1){
+      alert('no se aceptan valores menores a 1');
     }else{
       this.cantidad -=1;
     }
@@ -160,32 +162,51 @@ export class FacturaComponent implements OnInit {
   agregarADetalle(){
       this.productoService.buscarPorId(this.idProductoSeleccionado).subscribe(
         data =>{
-        this.precioProducto = data.precio;
+        if(this.cantidad > data.stock){
+            alert('La cantidad es mayor al stock del producto');
+        }else{
+          this.precioProducto = data.precio;
 
-        this.precioProductoFinal = this.precioProducto * this.cantidad;
-        this.subTotal += this.precioProductoFinal;
-        this.ivaValor = this.subTotal*0.16;
-        this.total = (this.subTotal+this.ivaValor);
+          this.precioProductoFinal = this.precioProducto * this.cantidad;
+          this.subTotal += this.precioProductoFinal;
+          this.ivaValor = this.subTotal*0.16;
+          this.total = (this.subTotal+this.ivaValor);
+  
+  
+          this.facturaDto.id = this.idFacturaCreada;
+  
+          this.productoDto = new ProductoDTO(this.idProductoSeleccionado,data.nombre,data.precio,data.stock,data.fechaCreacion,data.categoria);
+  
+          this.detalle = new Detalle(this.cantidad, this.precioProductoFinal, this.productoDto, this.facturaDto);
+            
 
+          this.detalleService.crear(this.detalle).subscribe(
+            data => {
+              alert('Producto Agregado');
+              this.listaDetalles.push(this.detalle);
+           
+              this.idProductoSeleccionado = null;
+              this.cantidad = null;
+              this.idProductoSeleccionado = null;
+            },
+            err => {
+              alert('Error al agregar el producto');
+            })
 
-        this.facturaDto.id = this.idFacturaCreada;
+            this.producto = new Producto(data.nombre, data.precio, (data.stock-this.cantidad),data.categoria);
+            this.productoService.actualizar(data.id, this.producto).subscribe(
+              data =>{
+                console.log("Producto actualizado: ");
+              },
+              err =>{
+                console.log("Error al actualizar el producto: ",err);
+              }
+            )
+        }
+      
 
-        this.productoDto = new ProductoDTO(this.idProductoSeleccionado,data.nombre,data.precio,data.stock,data.fechaCreacion,data.categoria);
-
-        this.detalle = new Detalle(this.cantidad, this.precioProductoFinal, this.productoDto, this.facturaDto);
-             
-        this.detalleService.crear(this.detalle).subscribe(
-          data => {
-            alert('Producto Agregado');
-            this.listaDetalles.push(this.detalle);
-         
-            this.idProductoSeleccionado = null;
-            this.cantidad = null;
-            this.idProductoSeleccionado = null;
-          },
-          err => {
-            alert('Error al agregar el producto');
-          })
+      
+        
 
         });    
 

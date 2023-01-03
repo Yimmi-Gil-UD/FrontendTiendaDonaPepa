@@ -69,6 +69,7 @@ export class ClienteComponent implements OnInit {
         alert('cliente creado');
         this.closePopup();
         this.borrarDatos();
+        window.location.reload();
       },
       err => {
         alert('Error al crear al cliente');
@@ -93,6 +94,7 @@ export class ClienteComponent implements OnInit {
       data =>{
         alert('cliente actualizado');
         this.closePopupUpdate();
+        window.location.reload();
       },
       err =>{
         alert('Error al actualizar el cliente');
@@ -104,6 +106,7 @@ export class ClienteComponent implements OnInit {
     this.clienteService.eliminar(id).subscribe(
       data=>{
         alert('cliente eliminado');
+        window.location.reload();
       },
       err =>{
         alert('error al eliminar el cliente');

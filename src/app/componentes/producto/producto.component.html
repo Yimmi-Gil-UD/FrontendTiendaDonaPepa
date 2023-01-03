@@ -95,7 +95,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let productos of productosLista">
+    <tr *ngFor="let productos of productosLista ">
       <th>{{productos.id}}</th>
       <td>{{productos.nombre}}</td>
       <td>{{productos.precio}}</td>
@@ -103,10 +103,11 @@
       <td>{{productos.fechaCreacion}}</td>
       <td>{{productos.categoria.idCategoria}}</td>
       <td><button class="btn btn-primary" (click)="openPopupEditar(productos)">Editar</button>
-        <button class="btn btn-danger" (click)="borrarCliente(productos.id)">Eliminar</button></td>
-    </tr>
+        <button class="btn btn-danger" (click)="borrarCliente(productos.id)">Eliminar</button></td>       
+      </tr>
   </tbody>
 </table>
+
 
 <!--Modal Actualizar-->
 

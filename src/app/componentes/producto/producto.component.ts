@@ -8,6 +8,7 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 
 
 
+
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -29,6 +30,7 @@ export class ProductoComponent implements OnInit {
   productoDTO:ProductoDTO;
   categoriaLista:Categoria[];
   productosLista:ProductoDTO[];
+  
   
   constructor(
     private productoService:ProductoService,
@@ -73,6 +75,7 @@ export class ProductoComponent implements OnInit {
         alert('producto creado');
         this.closePopup();
         this.borrarDatos();
+        window.location.reload();
       },
       err =>{
         alert('Error al crear el producto');
@@ -97,11 +100,13 @@ export class ProductoComponent implements OnInit {
       data => {
         alert('Producto actualizado');
         this.closePopupActualizar();
+        window.location.reload();
       },
       err => {
         alert('Error al actualizar el producto');
       }
     );
+    
   }
 
   listar(){
@@ -129,7 +134,7 @@ export class ProductoComponent implements OnInit {
     this.productoService.eliminar(id).subscribe(
       data =>{
        alert('Producto eliminado');
-       
+       window.location.reload();
       },
       err =>{
         alert('Error al eliminar el cliente');
@@ -138,5 +143,14 @@ export class ProductoComponent implements OnInit {
   }
   
 
+  // Paginacion 
+  p: number = 1;
+  total: number = 0;
+
+  pageChangeEvent(event: number){
+    this.p = event;
+    //this.getUsers();
+}
+  
 
 }
