@@ -29,6 +29,8 @@ export class ClienteComponent implements OnInit {
   ciudad = new Ciudad();
   cliente:Cliente;
 
+  filterNC = '';
+
   constructor(
     private ciudadService:CiudadService,
     private clienteService:ClienteService) { }

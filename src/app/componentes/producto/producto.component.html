@@ -81,7 +81,10 @@
 
 
 <!-- tabla-->
-
+<div class="form-control">
+  <h4>Buscar por nombre del producto:</h4>
+  <input type="text" class="form-control" [(ngModel)]="filterNP" placeholder="Buscar...." name="filterNP">
+</div>
 <table class="table">
   <thead class="table-dark">
     <tr>
@@ -95,7 +98,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let productos of productosLista ">
+    <tr *ngFor="let productos of productosLista | filter:filterNP">
       <th>{{productos.id}}</th>
       <td>{{productos.nombre}}</td>
       <td>{{productos.precio}}</td>

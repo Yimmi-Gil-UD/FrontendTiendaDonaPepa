@@ -99,7 +99,10 @@
 
 
 <!-- tabla-->
-
+<div class="form-control">
+  <h4>Buscar por nombre del cliente:</h4>
+  <input type="text" class="form-control" [(ngModel)]="filterNC" placeholder="Buscar...." name="filterNC">
+</div>
 <table class="table">
   <thead class="table-dark">
     <tr>
@@ -114,7 +117,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cliente of clienteLista">
+    <tr *ngFor="let cliente of clienteLista | filterCliente:filterNC">
       <th>{{cliente.id}}</th>
       <th>{{cliente.nombre}}</th>
       <td>{{cliente.apellido}}</td>

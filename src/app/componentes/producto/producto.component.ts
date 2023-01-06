@@ -31,6 +31,7 @@ export class ProductoComponent implements OnInit {
   categoriaLista:Categoria[];
   productosLista:ProductoDTO[];
   
+  filterNP = '';
   
   constructor(
     private productoService:ProductoService,

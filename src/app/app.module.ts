@@ -9,6 +9,9 @@ import { ProductoComponent } from './componentes/producto/producto.component';
 import { ClienteComponent } from './componentes/cliente/cliente.component';
 import { FacturaComponent } from './componentes/factura/factura.component';
 import { EstadisticaComponent } from './componentes/estadistica/estadistica.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FilterClientePipe } from './pipes/filter-cliente.pipe';
+import { ConsultarFacturaComponent } from './componentes/consultar-factura/consultar-factura.component';
 
 
 
@@ -19,7 +22,10 @@ import { EstadisticaComponent } from './componentes/estadistica/estadistica.comp
     ProductoComponent,
     ClienteComponent,
     FacturaComponent,
-    EstadisticaComponent
+    EstadisticaComponent,
+    FilterPipe,
+    FilterClientePipe,
+    ConsultarFacturaComponent
   ],
   imports: [
     BrowserModule,
