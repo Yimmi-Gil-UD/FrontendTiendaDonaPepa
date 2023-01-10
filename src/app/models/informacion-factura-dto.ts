@@ -12,7 +12,7 @@ export class InformacionFacturaDTO {
 	documentoCliente:number;
 	ciudadCliente:string;
 
-    constructor(idFactura:number, fechaCreacionFactura:Date,cantidadProductos:number,precioProducto:number,
+    /*constructor(idFactura:number, fechaCreacionFactura:Date,cantidadProductos:number,precioProducto:number,
         nombreProducto:string,nombreCategoria:string,nombreApellidoCliente:string,emailCliente:string,
         telefonoCliente:number,documentoCliente:number,ciudadCliente:string){
 
@@ -27,7 +27,7 @@ export class InformacionFacturaDTO {
             this.telefonoCliente = telefonoCliente;
             this.documentoCliente = documentoCliente;
             this.ciudadCliente = ciudadCliente;
-    }
+    }*/
 
 
 }

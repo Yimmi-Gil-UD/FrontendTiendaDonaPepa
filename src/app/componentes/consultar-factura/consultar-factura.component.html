@@ -1,5 +1,38 @@
 <div>
-    <input type="number" placeholder="insertar nombre"  class="form-control"  [(ngModel)]="idConsultarFactura">
+    <input type="number" placeholder="insertar id factura"  class="form-control"  [(ngModel)]="idConsultarFactura">
     <br>
     <button class="btn btn-primary" (click)="consultarFactura()">Consultar Factura</button>
 </div>
+<br>
+
+<div id="divDatos">
+ <b>Nombre:</b> {{nombreCliente}}<br>
+ <b>Documento Identificación:</b> {{documentoCliente}}<br>
+ <b>Correo:</b> {{correoCliente}}<br>
+ <b>Ciudad:</b> {{ciudadCliente}}<br>
+ <b>Teléfono:</b> {{telefonoCliente}}<br>
+ <b>Id Factura: </b>{{idFactura}}
+</div>
+
+<br>
+<!-- tabla-->
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let datos of listaDatosFactura">
+        <th>{{datos.nombreProducto}}</th>
+        <td>{{datos.nombreCategoria}}</td>
+        <td>{{datos.cantidadProductos}}</td>
+        <td>{{datos.precioProducto | currency}}</td>
+    </tbody>
+  </table>
+
+<p align="right">Valor Total Compra: <b>{{valorTotal | currency}}</b></p>
+
