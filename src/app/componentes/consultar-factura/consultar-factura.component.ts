@@ -21,9 +21,14 @@ export class ConsultarFacturaComponent implements OnInit {
   idFactura=0;
   valorTotal = 0;
 
+  banderaInfoCliente:boolean;
+
   constructor(private facturaService:FacturaService) { }
 
   ngOnInit(): void {
+    //block
+    document.getElementById("divDatos").style.display = "none";
+    document.getElementById("tablaDatos").style.display = "none";
   }
 
   consultarFactura(){
@@ -41,6 +46,9 @@ export class ConsultarFacturaComponent implements OnInit {
         this.idFactura = 0;
         this.idConsultarFactura = null;
         this.valorTotal = 0;
+
+        document.getElementById("divDatos").style.display = "none";
+        document.getElementById("tablaDatos").style.display = "none";
         }else{
         //console.log(data);
         this.listaDatosFactura = data;
@@ -54,7 +62,8 @@ export class ConsultarFacturaComponent implements OnInit {
         for(let i = 0;i<data.length;i++){
           this.valorTotal += data[i].precioProducto;
         }
-
+        document.getElementById("divDatos").style.display = "block";
+        document.getElementById("tablaDatos").style.display = "block";
         }
       },err =>{
         //console.log(err);
