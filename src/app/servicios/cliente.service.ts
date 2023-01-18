@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClienteDTO } from '../models/cliente-dto';
 import { Cliente } from '../models/cliente';
+import { InformacionClientesDTO } from '../models/informacion-clientes-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ClienteService {
 
   buscarPorDocumento(numDocumento:number): Observable<any>{
     return this.httpClient.get<any>('api/cliente/'+`buscarPorDocumento/${numDocumento}`);
+  }
+
+  listarClientesXCompras():Observable<InformacionClientesDTO[]>{
+    return this.httpClient.get<InformacionClientesDTO[]>('api/cliente/clientesMayoresCompras');
   }
 
 }

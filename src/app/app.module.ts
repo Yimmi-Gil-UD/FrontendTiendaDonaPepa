@@ -12,6 +12,7 @@ import { EstadisticaComponent } from './componentes/estadistica/estadistica.comp
 import { FilterPipe } from './pipes/filter.pipe';
 import { FilterClientePipe } from './pipes/filter-cliente.pipe';
 import { ConsultarFacturaComponent } from './componentes/consultar-factura/consultar-factura.component';
+import {ChartModule} from 'primeng/chart';
 
 
 
@@ -31,7 +32,8 @@ import { ConsultarFacturaComponent } from './componentes/consultar-factura/consu
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

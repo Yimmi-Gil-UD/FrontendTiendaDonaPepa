@@ -65,7 +65,7 @@ export class ClienteComponent implements OnInit {
   crear(){
     this.ciudad.idCiudad = this.ciudadSeleccionada;
     this.cliente = new Cliente(this.nombre, this.apellido, this.telefono, this.email, this.documento, this.ciudad);
-    console.log(this.cliente);
+    //console.log(this.cliente);
     this.clienteService.crear(this.cliente).subscribe(
       data =>{
         alert('cliente creado');
@@ -91,7 +91,7 @@ export class ClienteComponent implements OnInit {
   actualizar(){
     this.ciudad.idCiudad = this.ciudadSeleccionada;
     this.cliente = new Cliente(this.nombre, this.apellido, this.telefono, this.email, this.documento, this.ciudad);
-    console.log(this.cliente);
+    //console.log(this.cliente);
     this.clienteService.actualizar(this.idClienteActualizar, this.cliente).subscribe(
       data =>{
         alert('cliente actualizado');

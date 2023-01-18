@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto';
 import { Observable } from 'rxjs';
 import { ProductoDTO } from '../models/producto-dto';
+import { InformacionProductosDTO } from '../models/informacion-productos-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ productoUrl = 'http://localhost:9898/api/productos/'
   /*actualizar(id: number, producto:Producto): Observable<any>{
     return this.httpClient.post<Producto>('api/productos/'+`actualizar/${id}`, producto);
   }*/
+
+  listarProductosMasVendidos():Observable<InformacionProductosDTO[]>{
+    return this.httpClient.get<InformacionProductosDTO[]>('api/productos/productosMasVendidos');
+  }
 
 
 }

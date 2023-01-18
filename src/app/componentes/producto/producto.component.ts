@@ -70,7 +70,7 @@ export class ProductoComponent implements OnInit {
   crear(){
     this.categoria.idCategoria = Number(this.tipoCategoriaR);
     this.producto = new Producto(this.nombre, this.precio, this.stock,this.categoria);
-    console.log(this.producto);
+    //console.log(this.producto);
     this.productoService.crear(this.producto).subscribe(
       data =>{
         alert('producto creado');
@@ -95,8 +95,8 @@ export class ProductoComponent implements OnInit {
   Actualizar(){
     this.categoria.idCategoria = Number(this.tipoCategoriaR);
     this.producto = new Producto(this.nombre, this.precio, this.stock, this.categoria);
-    console.log(this.producto);
-    console.log("id del producto: ",this.idProductoActualizar);
+    //console.log(this.producto);
+    //console.log("id del producto: ",this.idProductoActualizar);
     this.productoService.actualizar(this.idProductoActualizar,this.producto).subscribe(
       data => {
         alert('Producto actualizado');
@@ -131,7 +131,7 @@ export class ProductoComponent implements OnInit {
   }
 
   borrarCliente(id:number){
-    console.log(id);
+    //console.log(id);
     this.productoService.eliminar(id).subscribe(
       data =>{
        alert('Producto eliminado');
